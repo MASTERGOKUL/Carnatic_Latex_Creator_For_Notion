@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Carnatic Swara Builder</title>
+
+
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']] }, svg: { fontCache: 'global' } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+
+    <h2>🎼 Carnatic Swara Builder</h2>
+
+    <div class="card controls">
+        Notes / Group:
+        <select id="notesPerGroup" onchange="resetAll()">
+            <option>3</option>
+            <option selected>4</option>
+            <option>5</option>
+            <option>8</option>
+        </select>
+
+        Max Groups:
+        <select id="maxGroups" onchange="resetAll()">
+            <option>4</option>
+            <option selected>8</option>
+            <option>16</option>
+        </select>
+
+        <button class="action-btn" onclick="openInfo()">ℹ️ Info</button>
+    </div>
+
+    <div class="card">
+        <h3>📐 LaTeX Preview</h3>
+        <div id="latex-preview"></div>
+    </div>
+
+    <div class="card">
+        <div class="swara-row">
+            <button class="swara-btn" onclick="add('ச')">ச</button>
+            <button class="swara-btn" onclick="add('ரி')">ரி</button>
+            <button class="swara-btn" onclick="add('க')">க</button>
+            <button class="swara-btn" onclick="add('ம')">ம</button>
+            <button class="swara-btn" onclick="add('ப')">ப</button>
+            <button class="swara-btn" onclick="add('த')">த</button>
+            <button class="swara-btn" onclick="add('நி')">நி</button>
+        </div>
+
+        <div class="actions">
+            <button class="action-btn upper" onclick="setOctave('u',this)">⬆ Upper</button>
+            <button class="action-btn lower" onclick="setOctave('l',this)">⬇ Lower</button>
+            <button class="action-btn" onclick="toggleSticky(this)">📌 Sticky</button>
+            <button class="action-btn" onclick="undo()">↩ Undo</button>
+            <button class="action-btn" onclick="redo()">↪ Redo</button>
+            <button class="action-btn primary" onclick="copy()">📋 Copy</button>
+            <button class="action-btn" onclick="resetAll()">🧹 Clear</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🧾 Raw LaTeX (for Notion)</h3>
+        <div id="output">Nothing to show</div>
+    </div>
+
+    <!-- INFO MODAL -->
+    <div class="modal" id="info">
+        <div class="modal-content">
+            <h3>ℹ️ Help</h3>
+            <ul>
+                <li><b>Notes / Group</b> – swaras per avartanam</li>
+                <li><b>Max Groups</b> – total avartanams</li>
+                <li><b>Sticky</b> – hold octave across notes</li>
+                <li><b>Ctrl + ↑ / ↓</b> – upper / lower octave</li>
+                <li><b>Ctrl + Z / Y</b> – undo / redo</li>
+                <li><b>Ctrl + C</b> – copy LaTeX</li>
+            </ul>
+            <button class="action-btn" onclick="closeInfo()">Close</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
